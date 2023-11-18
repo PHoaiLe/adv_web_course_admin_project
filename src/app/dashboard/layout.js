@@ -1,17 +1,21 @@
 'use client';
 import Link from 'next/link';
 import {usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+
 
 export default function DashboardSidebarLayout({ children }) {
   const [activeLink, setActiveLink] = useState('');
   const pathname = usePathname();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   useEffect(() => {
     //get current url path
     setActiveLink(pathname);
   }, [pathname]);
   
   return (
+   <>
     <div>
       <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 ">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -59,10 +63,22 @@ export default function DashboardSidebarLayout({ children }) {
       <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
          <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul className="space-y-2 font-medium">
+               <li className={`py-1 ${activeLink === '/dashboard/main' ? 'bg-blue-700 text-white' : 'bg-white text-gray-700'}`}>
+                  <Link href="/dashboard/main" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700">
+                     <svg aria-hidden="true" className={`w-6 h-6 transition duration-75 ${activeLink === '/dashboard/main' ? 'text-white' : 'text-gray-500'} dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
+                     <span className={`py-1 ${activeLink === '/dashboard/main' ? 'text-white ml-3' : 'ml-3'}`} >Dashboard</span>
+                  </Link>
+               </li>
                <li className={`py-1 ${activeLink === '/dashboard/accounts' ? 'bg-blue-700 text-white' : 'bg-white text-gray-700'}`}>
                   <Link href="/dashboard/accounts" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700">
                      <svg aria-hidden="true" className={`w-6 h-6 transition duration-75 ${activeLink === '/dashboard/accounts' ? 'text-white' : 'text-gray-500'} dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
-                     <span className={`py-1 ${activeLink === '/dashboard/accounts' ? 'text-white ml-3' : 'ml-3'}`} >accounts</span>
+                     <span className={`py-1 ${activeLink === '/dashboard/accounts' ? 'text-white ml-3' : 'ml-3'}`} >Accounts</span>
+                  </Link>
+               </li>
+               <li className={`py-1 ${activeLink === '/dashboard/classes' ? 'bg-blue-700 text-white' : 'bg-white text-gray-700'}`}>
+                  <Link href="/dashboard/classes" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700">
+                     <svg aria-hidden="true" className={`w-6 h-6 transition duration-75 ${activeLink === '/dashboard/classes' ? 'text-white' : 'text-gray-500'} dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
+                     <span className={`py-1 ${activeLink === '/dashboard/classes' ? 'text-white ml-3' : 'ml-3'}`} >Classes</span>
                   </Link>
                </li>
             </ul>
@@ -72,5 +88,6 @@ export default function DashboardSidebarLayout({ children }) {
          {children}
       </div>
    </div>
+   </>
   );
 }
