@@ -5,48 +5,73 @@ import { useRouter } from 'next/navigation';
 export default function SignIn() {
   const { push } = useRouter();
   function handleClick() {
-      //push works but it doesnt load js properly for sidebar drawer to work. hence am using window.location
+      //push works but it doesnt load js properly for flowbite sidebar drawer to work. hence am using window.location
       push('/dashboard')
       //window.location = '/dashboard';
   }
   return (
-        <>
-            <section className="min-h-screen flex flex-col">
-                <div className="flex flex-1 items-center justify-center">
-                    <div className="rounded-lg sm:border-2 px-4 lg:px-24 py-16 lg:max-w-xl sm:max-w-md w-full text-center">
-                        <form className="text-center" action={handleSubmit}>
-                            <h1 className="font-bold tracking-wider text-3xl mb-8 w-full text-gray-600">
-                                Sign in
-                            </h1>
-                            <div className="py-2 text-left">
-                                <input type="email" className="bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 " 
-                                placeholder="Enter your email"
-                                name="email"
-                                required
-                                />
-                            </div>
-                            <div className="py-2 text-left">
-                                <input type="password" className="bg-gray-200 border-2 border-gray-100 focus:outline-none bg-gray-100 block w-full py-2 px-4 rounded-lg focus:border-gray-700 " 
-                                placeholder="Enter password"
-                                name="password"
-                                required
-                                />
-                            </div>
-                            <div className="py-2">
-                                <button type="submit" className="border-2 border-gray-100 focus:outline-none bg-blue-600 text-white font-bold tracking-wider block w-full p-2 rounded-lg focus:border-gray-700 hover:bg-green-700" onClick={handleClick}>
-                                    Sign In
-                                </button>
-                            </div>
-                        </form>
-                        <div className="text-center" style={error_message_status}>
-                            <p>{error_message}</p>
-                        </div>
-                        <div className="text-center">
-                            <Link href="#" className="hover:text-blue-700" >Forgot password?</Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </>
-    )
+    <div className="container mx-auto py-8">
+      <form className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+        <h1 className="text-center font-bold mb-3">LOGIN</h1>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2"  htmlFor="email">
+            Email
+          </label>
+          <input
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter email"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+             htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+          />
+        </div>
+        <div className="flex items-center justify-between my-5">
+          <div className="flex items-start">
+            <div className="flex items-center h-5">
+              <input
+                id="remember"
+                aria-describedby="remember"
+                type="checkbox"
+                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                required=""
+              />
+            </div>
+            <div className="ml-3 text-sm">
+              <label  htmlFor="remember" className="text-gray-500 dark:text-gray-300">
+                Remember me
+              </label>
+            </div>
+          </div>
+          <Link
+            href="/forgot_pass"
+            className="text-blue-500 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+          >
+            Forgot password
+          </Link>
+        </div>
+        <button
+          className="w-full bg-blue-700 text-white text-sm font-bold py-3 px-4 rounded-md hover:bg-blue-700 transition duration-300"
+          type="button"
+          onClick={handleClick}
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  );
 }
