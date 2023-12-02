@@ -1,13 +1,10 @@
 'use client';
-import Link from "next/link";
 import { useRouter } from 'next/navigation';
 
-export default function SignIn() {
+export default function Login() {
   const { push } = useRouter();
   function handleClick() {
-      //push works but it doesnt load js properly for flowbite sidebar drawer to work. hence am using window.location
-      push('/dashboard')
-      //window.location = '/dashboard';
+      push('/dashboard/main')
   }
   return (
     <div className="container mx-auto py-8">
@@ -22,7 +19,7 @@ export default function SignIn() {
             type="email"
             id="email"
             name="email"
-            placeholder="Enter email"
+            placeholder="john@example.com"
           />
         </div>
         <div className="mb-4">
@@ -37,7 +34,7 @@ export default function SignIn() {
             type="password"
             id="password"
             name="password"
-            placeholder="Enter password"
+            placeholder="********"
           />
         </div>
         <div className="flex items-center justify-between my-5">
@@ -57,12 +54,6 @@ export default function SignIn() {
               </label>
             </div>
           </div>
-          <Link
-            href="/forgot_pass"
-            className="text-blue-500 text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-          >
-            Forgot password
-          </Link>
         </div>
         <button
           className="w-full bg-blue-700 text-white text-sm font-bold py-3 px-4 rounded-md hover:bg-blue-700 transition duration-300"
