@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 export default function Login() {
   const { push } = useRouter();
   function handleClick() {
-      push('/dashboard/main')
+      push('/pages/dashboard')
   }
   return (
     <div className="container mx-auto py-8">
